@@ -141,6 +141,24 @@ function drawC(ctx, cX, cY, x, y, px) {
 /*spikes() doesn't look super great,
  a function to rotate straight lines is needed*/
 
+/* miku: could be something like
+    function rotate(x, y, x1, y1, rotationAngle)
+      {
+        center.x = x + ((x1 - x) / 2);
+        center.y = y + ((y1 - y) / 2);
+        hypotenuseLength = sqrt((x1 - center.x)*(x1 - center.x) - (y1 - center.y)(*(y1 - center.y))
+        
+        // toinen puoli viivasta
+        currentAngle = asin( (y1 - center.y) / hypotenuseLength );
+        new.x1 = center.x + acos (currentAngle + rotationAngle) * hypotenuseLength;
+        new.y1 = center.y + asin (currentAngle + rotationAngle) * hypotenuseLength;
+        
+        // toinen puoli viivasta
+        currentAngle = asin( (y - center.y) / hypotenuseLength );
+        new.x = center.x - acos (currentAngle + rotationAngle) * hypotenuseLength;
+        new.y = center.y - asin (currentAngle + rotationAngle) * hypotenuseLength;
+      } */
+
 function spikes(ctx, cX, cY, r, clr) {
   var clr = clr;
   var l = r * 8;
@@ -181,14 +199,14 @@ function sameClr(clr) {
 //sometimes dFade() seems to stop before full black
 
 function dFade(clr) {
-    var clr = clr;
+    var clr = clr;  // miku: seems like an unnecessary declaration?
     var i = 1;
     var arr = clr.split("");
     for (var j = 0; j < 16; j++) {
       if (arr[i] === "0" && i < 6) {
         i += 1;
         j = 0;
-        continue;
+        continue;  // miku: didn't know this command, seems very useful
       }
       if (vals.hex[j] === arr[i]) {
         arr[i] = vals.hex[j-1];
